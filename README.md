@@ -409,10 +409,11 @@ The computation requires spike times and source indices, as well as a connectivi
 from scipy import sparse
 
 J = sparse.lil_array((N_tot, N_tot))
-J[exc_synapses.i, exc_synapses.j] = J_excit
+# workaround for bug with b2 VariableView not working as sparse array indices
+J[np.array(exc_synapses.i, dtype=int), np.array(exc_synapses.j, dtype=int)] = J_excit
 # careful with indexing: subgroup indexing (and thus synapse.i) starts over
 # again with 0, despite coming from subgroup starting at index N_excit
-J[inhib_synapses.i + N_excit, inhib_synapses.j] = J_inhib
+J[np.array(inhib_synapses.i + N_excit, dtype=int), np.array(inhib_synapses.j, dtype=int)] = J_inhib
 J = J.tocsr()[:, :N_excit]  # only need spikes onto pyramidal cells
 
 I_ampa = wslfp.spikes_to_biexp_currents(

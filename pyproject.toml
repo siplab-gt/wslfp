@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "wslfp"
-version = "0.2.2"
+version = "0.2.3"
 description = "Weighted Sum Local Field Potentials - Implementation of the proxy method for point neurons from Mazzoni, Lindén et al., 2015"
 authors = [
     "Kyle Johnsen <kyle@kjohnsen.org>",
@@ -24,9 +24,9 @@ classifiers = [
 include = ["wslfp/*"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
-scipy = "^1.7"
-numpy = "^1.16"
+python = "^3.10"
+scipy = ">=1.7"
+numpy = ">=1.16"
 matplotlib = "^3.4"
 attrs = "^23.2.0"
 
